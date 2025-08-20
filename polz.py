@@ -1,3 +1,13 @@
+def isSystemSymbol(num_buffer, symbol):
+    if symbol == 'a':
+        return true;
+    return false;
+
+def isVariable(num_buffer, symbol):
+    if symbol == 's':
+        return true;
+    return false;
+
 def parse_math_expression(expression):
     elements = []
     i = 0
@@ -13,6 +23,7 @@ def parse_math_expression(expression):
     # Пробегаем по строке символ за символом
     num_buffer = ''
     for char in expression:
+        #if char.isdigit() or char == '.' or isSystemSymbol(num_buffer, char) or isVariable(num_buffer, char):
         if char.isdigit() or char == '.':
             num_buffer += char
         else:
@@ -31,8 +42,3 @@ def parse_math_expression(expression):
     return elements
 
 
-# Тестируем функцию
-expression =  "31+5*(7^2)"
-result = parse_math_expression(expression)
-for idx, element in result:
-    print(f"{idx}: {element}")
