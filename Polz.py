@@ -7,6 +7,9 @@ def parse_math_expression(expression):
         elements.append((i, value))
         i += 1
 
+
+
+
     # Пробегаем по строке символ за символом
     num_buffer = ''
     for char in expression:
