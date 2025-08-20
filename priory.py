@@ -9,5 +9,8 @@ def sort_by_priority(expression1):
         '-': 4
     }
     symbols = list(expression1)
+
+
+
     sorted_symbols = sorted(symbols, key=lambda x: priority.get(x, float('inf')))
     return ''.join(sorted_symbols)
