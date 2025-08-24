@@ -1,3 +1,3 @@
 DEFINE: A=3
 DEFINE: B=1
-EXECUTE: sin(M_PI) + 3 * 4
+EXECUTE: sin(0) + 3 * 4 % 2 + sqrt(4)

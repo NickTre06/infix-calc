@@ -10,18 +10,27 @@ def infix_to_rpn(expression):
         '-': 1,
         '*': 2,
         '/': 2,
-        'sin': 3  # sin имеет высокий приоритет, чтобы выполняться раньше остальных операций
+        '%': 2,    # Остаток от деления
+        '^': 3,    # Возведение в степень
+        'sin': 4,  # Тригонометрическая функция
+        'cos': 4,
+        'tan': 4,  # Тангенс сокращённо записан как tan
+        'sqrt': 4, # Квадратный корень
+        'log': 4,  # Логарифм
+        'exp': 4,  # Экспонента e^x
+        'abs': 4,  # Модуль числа
     }
+    
     
     output = []
     stack = []
     
     def is_function(token):
         """Проверяем, является ли токен функцией"""
-        return token.lower() in ['sin']
+        return token.lower() in ['sin', 'cos', 'tan', 'sqrt', 'log', 'exp', 'abs']
     
     for token in expression:
-        if is_float(token):  # Число
+        if token.isdigit() or is_float(token):  # Число
             output.append(token)
         elif token in precedence.keys():  # Бинарный оператор
             while (stack and stack[-1] != '(' and
@@ -42,4 +51,4 @@ def infix_to_rpn(expression):
     while stack:
         output.append(stack.pop())
         
-    return ' '.join(output)
+    return output
