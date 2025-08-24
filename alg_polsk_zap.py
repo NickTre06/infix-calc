@@ -10,15 +10,15 @@ def infix_to_rpn(expression):
         '-': 1,
         '*': 2,
         '/': 2,
-        '%': 2,    # Остаток от деления
-        '^': 3,    # Возведение в степень
-        'sin': 4,  # Тригонометрическая функция
+        '%': 2,   
+        '^': 3,    
+        'sin': 4, 
         'cos': 4,
-        'tan': 4,  # Тангенс сокращённо записан как tan
-        'sqrt': 4, # Квадратный корень
-        'log': 4,  # Логарифм
-        'exp': 4,  # Экспонента e^x
-        'abs': 4,  # Модуль числа
+        'tan': 4,  
+        'sqrt': 4, 
+        'log': 4,  
+        'exp': 4, 
+        'abs': 4,  
     }
     
     
@@ -30,23 +30,23 @@ def infix_to_rpn(expression):
         return token.lower() in ['sin', 'cos', 'tan', 'sqrt', 'log', 'exp', 'abs']
     
     for token in expression:
-        if token.isdigit() or is_float(token):  # Число
+        if token.isdigit() or is_float(token):  
             output.append(token)
-        elif token in precedence.keys():  # Бинарный оператор
+        elif token in precedence.keys():  
             while (stack and stack[-1] != '(' and
                   precedence.get(stack[-1], 0) >= precedence.get(token)):
                 output.append(stack.pop())
             stack.append(token)
-        elif is_function(token):  # Функция типа sin
+        elif is_function(token):  
             stack.append(token)
-        elif token == '(':  # Открывающая скобка
+        elif token == '(':  
             stack.append(token)
-        elif token == ')':  # Закрывающая скобка
+        elif token == ')':  
             while stack and stack[-1] != '(':
                 output.append(stack.pop())
-            stack.pop()  # Удаляем открывающую скобку
+            stack.pop()  
             if stack and is_function(stack[-1]):
-                output.append(stack.pop())  # Выталкиваем функцию
+                output.append(stack.pop())  
                 
     while stack:
         output.append(stack.pop())

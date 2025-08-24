@@ -1,19 +1,11 @@
 import polz
 from polz import check_brackets_balance
 import math
-#CONSTANTS = {"M_PI": math.pi, "M_E": math.e}
 from polz import parse_math_expression
 from alg_polsk_zap import infix_to_rpn
-
-#print.print_array("DEFINE: A=5;"+
-                #  "DEFINE: B=6; "+
-                #  "EXECUTE: A+B;")
-#print.print_array(polz.parse_math_expression("31+5*(7^2)"))
+from alg_counting import alg_count
 
 
-#Тестируем функцию
-#for idx, element in polz.parse_math_expression(" A7 + 31 + 22225 *(7^2)"):
-#   print(f"{idx}: {element}")
 variables = {}
 tokens = []
 
@@ -46,7 +38,8 @@ with open("./input.txt", 'r', encoding='UTF-8') as file:
          tokens = parse_math_expression(linewithoutexecute)
 
          rpn = infix_to_rpn(tokens)
-         print(rpn)
+         count =  alg_count(rpn)
+         print(count)
 
 
       

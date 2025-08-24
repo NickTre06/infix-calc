@@ -1,12 +1,10 @@
 import math
 from collections import deque
-# Определяем наши константы и функции
 CONSTANTS = {"M_PI": math.pi, "M_E": math.e}
-#FUNCTIONS = {"sin()": math.sin, "cos()": math.cos, "tan()": math.tan}
 
 
 def isConstant(token):
-    """Проверяет, является ли токен константой"""
+    
     return token in CONSTANTS
 
 def check_brackets_balance(line):
@@ -26,22 +24,21 @@ def check_brackets_balance(line):
 
 
 def isFunction(token):
-    """Проверяет, является ли токен названием функции"""
     return token in FUNCTIONS
 
 
 def getTokenType(char):
     """Вычисляет тип токена"""
     if char.isdigit() or char == '.':
-        return 'digit'  # Собираем числа
+        return 'digit' 
     elif char.isalpha():
-        return 'word'  # Собираем буквы (константы и функции)
+        return 'word'  
     elif char == '(' or char == ')':
         return 'bracket'
     elif char.isspace():
         return 'space'
     else:
-        return 'operation'  # Остальные символы — операции или скобки
+        return 'operation'  
     
 
 
@@ -84,12 +81,12 @@ def parse_math_expression(expression):
         if prev_token_type == current_token_type :
             buf += char
         else:
-            # Завершаем предыдущий токен
+           
             if buf and prev_token_type != 'space':
                 add_element(buf)
-            buf = char  # Очищаем буфер
+            buf = char 
 
-    # Обрабатываем последний остаток
+   
     if buf:
         add_element(buf)
 
