@@ -29,10 +29,15 @@ def logarifm(base,arg):
     return math.log(arg, base)
 
 
+def is_variables(element: any, variables: any) -> bool:
+    for defin in variables:
+        if defin == element:
+            return True
+    return False
 
 
 
-def alg_count(rpn_expression):
+def alg_count(rpn_expression, variables):
 
     stack = deque()
     
@@ -58,7 +63,15 @@ def alg_count(rpn_expression):
     for token in tokens:
         try:
             # Пробуем превратить токен в число
-            number = float(token)
+            number = None
+            if token == 'M_PI':
+                number = math.pi
+            elif token == 'M_E':
+                number = math.e
+            elif is_variables(token , variables):
+                number = float(variables[token])
+            else:
+                number = float(token)
             stack.append(number)
         except ValueError:
             # Если токен не число, считаем, что это оператор или функция

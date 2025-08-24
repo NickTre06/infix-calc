@@ -31,7 +31,7 @@ def getTokenType(char):
     """Вычисляет тип токена"""
     if char.isdigit() or char == '.':
         return 'digit' 
-    elif char.isalpha():
+    elif char.isalpha() or char == '_':
         return 'word'  
     elif char == '(' or char == ')':
         return 'bracket'

@@ -4,7 +4,19 @@ import re
 def is_float(element: any) -> bool:
     return re.match(r'^-?\d+(?:\.\d+)$', element) is not None
 
-def infix_to_rpn(expression):
+def is_constants(element: any) -> bool:
+    if element == 'M_PI' or element == 'M_E':
+        return True
+    return False
+
+def is_variables(element: any, variables: any) -> bool:
+    for defin in variables:
+        if defin == element:
+            return True
+    return False
+
+
+def infix_to_rpn(expression, variables):
     precedence = {
         '+': 1,
         '-': 1,
@@ -30,7 +42,7 @@ def infix_to_rpn(expression):
         return token.lower() in ['sin', 'cos', 'tan', 'sqrt', 'log', 'exp', 'abs']
     
     for token in expression:
-        if token.isdigit() or is_float(token):  
+        if token.isdigit() or is_float(token) or is_constants(token) or is_variables(token, variables):  
             output.append(token)
         elif token in precedence.keys():  
             while (stack and stack[-1] != '(' and

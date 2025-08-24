@@ -27,18 +27,14 @@ with open("./input.txt", 'r', encoding='UTF-8') as file:
       if "EXECUTE:" in linewithoutspace:
          print ('This string is EXECUTE')
          linewithoutexecute = linewithoutspace.replace('EXECUTE:', '')
-         if linewithoutexecute.find('M_PI'):
-            linewithoutexecute = linewithoutexecute.replace('M_PI','3.14')
-         if linewithoutexecute.find('M_E'):
-            linewithoutexecute = linewithoutexecute.replace('M_E','2.72')
          if not check_brackets_balance(linewithoutexecute):
             print("Ошибка! Неверная структура скобок.")
             continue
          
          tokens = parse_math_expression(linewithoutexecute)
 
-         rpn = infix_to_rpn(tokens)
-         count =  alg_count(rpn)
+         rpn = infix_to_rpn(tokens, variables)
+         count =  alg_count(rpn, variables)
          print(count)
 
 
