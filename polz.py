@@ -28,7 +28,6 @@ def isFunction(token):
 
 
 def getTokenType(char):
-    """Вычисляет тип токена"""
     if char.isdigit() or char == '.':
         return 'digit' 
     elif char.isalpha() or char == '_':

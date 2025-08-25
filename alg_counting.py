@@ -11,6 +11,7 @@ def remains(a,b):
     return a%b
 def division(a,b):
     return a/b
+
 def powra(a,b):
     return pow(a, b)
 def sinus(x):
@@ -62,7 +63,7 @@ def alg_count(rpn_expression, variables):
     
     for token in tokens:
         try:
-            # Пробуем превратить токен в число
+           
             number = None
             if token == 'M_PI':
                 number = math.pi
@@ -74,13 +75,13 @@ def alg_count(rpn_expression, variables):
                 number = float(token)
             stack.append(number)
         except ValueError:
-            # Если токен не число, считаем, что это оператор или функция
+            
             if token in operators:
                 op_func = operators[token]
-                num_args = len(op_func.__code__.co_varnames)  # Узнаём кол-во аргументов функции
-                args = [stack.pop() for _ in range(num_args)]  # Берём аргументы из стека
-                result = op_func(*reversed(args))  # Применяем функцию к аргументам
-                stack.append(result)  # Записываем результат обратно в стек
+                num_args = len(op_func.__code__.co_varnames)  
+                args = [stack.pop() for _ in range(num_args)]  
+                result = op_func(*reversed(args)) 
+                stack.append(result)  
             else:
                 raise ValueError(f'Неопознанный символ {token}')
     
