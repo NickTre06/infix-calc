@@ -4,14 +4,40 @@ import math
 from polz import parse_math_expression
 from alg_polsk_zap import infix_to_rpn
 from alg_counting import alg_count
+from sys import stdin
 
 
 variables = {}
 tokens = []
 
-with open("./input.txt", 'r', encoding='UTF-8') as file:
-    lines = [line.rstrip() for line in file]
-    for line in lines:
+lines = []
+
+import sys
+
+
+args = sys.argv
+
+try: 
+   if len(args) > 1:
+      filename = args[1]
+      print(f'Считываем данные из файла: {filename}')
+      with open(filename, 'r', encoding='UTF-8') as file:
+         lines = [line.rstrip() for line in file]
+   else:
+      print('Считываем данные из консоли.')
+      for line in stdin:
+         lines.append(line.rstrip("\n"))
+         if line.find('EXECUTE') != -1:
+            break
+except Exception as exc:
+   print(exc.args)
+   sys.exit()
+
+print(lines)
+
+try:
+
+   for line in lines:
       linewithoutspace = line.replace(' ', '')
       if "DEFINE:" in linewithoutspace:
          print ('Start to handle DEFINE')
@@ -36,12 +62,5 @@ with open("./input.txt", 'r', encoding='UTF-8') as file:
          rpn = infix_to_rpn(tokens, variables)
          count =  alg_count(rpn, variables)
          print(count)
-
-
-      
-       
-
-
-
-      
-
+except Exception as exc:
+   print(exc.args)

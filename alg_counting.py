@@ -8,10 +8,13 @@ def subtraction(a,b):
 def multiply(a,b):
     return a*b
 def remains(a,b):
+    if b==0:
+       raise Exception("ошибка в условии") 
     return a%b
 def division(a,b):
+    if b==0:
+        raise Exception("ошибка в условии") 
     return a/b
-
 def powra(a,b):
     return pow(a, b)
 def sinus(x):
@@ -21,12 +24,16 @@ def cosin(x):
 def tang(x):
     return math.tan(x)
 def sqrtu(x):
+    if x < 0:
+        raise Exception("ошибка в условии") 
     return math.sqrt(x)
 def expon(x):
     return math.exp(x)
 def abss(x):
     return math.abs(x)
 def logarifm(base,arg):
+    if (arg == 1) or (arg <= 0) or (base <= 0):
+         raise Exception("ошибка в условии")  
     return math.log(arg, base)
 
 

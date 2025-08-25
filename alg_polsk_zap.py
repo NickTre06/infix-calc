@@ -38,7 +38,7 @@ def infix_to_rpn(expression, variables):
     stack = []
     
     def is_function(token):
-        """Проверяем, является ли токен функцией"""
+        
         return token.lower() in ['sin', 'cos', 'tan', 'sqrt', 'log', 'exp', 'abs']
     
     for token in expression:
